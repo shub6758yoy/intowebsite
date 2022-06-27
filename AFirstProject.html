@@ -1,0 +1,882 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>projectMy</title>
+
+    <style>
+        html {
+            padding: 0;
+            margin: 0;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Roboto Mono", "Zen Kurenaido", "Segoe UI", Tahoma, Geneva,
+                Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            /* background-color: rgb(221, 0, 0); */
+            background-color: rgb(94, 217, 221);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        /* styling navbar */
+
+        header {
+            /* background-color: rgb(216, 27, 184); */
+            background-color: rgb(215, 37, 221);
+            font-size: 1.4em;
+            position: sticky;
+            top: 0;
+            z-index: 5;
+            font-family: "Zen Kurenaido", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        #header-container {
+            background-color: rgb(216, 27, 184);
+            width: 80%;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+
+        #logo {
+            width: 60px;
+            height: 60px;
+        }
+
+        #navbar {
+            box-sizing: border-box;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            color: rgb(0, 0, 0);
+            transition: 0.8s;
+            display: flex;
+            flex-flow: row nowrap;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        #navbar #first-item li a {
+            text-decoration: none;
+            color: rgb(255, 255, 255);
+            font-size: 25px;
+            display: block;
+            padding: 1rem;
+            transition: 0.8s ease;
+        }
+
+        #navbar #first-item a:hover {
+            color: rgb(255, 0, 0);
+        }
+
+        #first-item {
+            display: flex;
+            /* background-color: black; */
+            flex-flow: row nowrap;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        #last-item {
+            display: none;
+            background-color: black;
+        }
+
+        #last-item p {
+            color: white;
+        }
+
+        #last-item img {
+            width: 40px;
+            height: 39px;
+        }
+
+        #last-item form {
+            display: flex;
+            justify-content: center;
+            padding: 0 0 1rem 0;
+        }
+
+        #last-item form input {
+            padding: 0.4em;
+        }
+
+        #last-item form input[type="email"] {
+            border: none;
+            border-radius: 10px;
+        }
+
+        #last-item form input[type="submit"] {
+            background-color: black;
+            color: white;
+            outline: none;
+            border: 1px solid black;
+            font-size: 0.666em;
+            padding: 5px;
+        }
+
+        #last-item form input[type="submit"]:hover {
+            color: red;
+            transition: 0.8s ease;
+        }
+
+        /* styling menu button in navbar */
+
+        #toggle-btn {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 40px;
+            height: 21px;
+            transition: 0.8s ease;
+            background-color: black;
+            border: none;
+            outline: none;
+        }
+
+        #toggle-btn:hover {
+            cursor: pointer;
+            transition: 0.8s;
+        }
+
+        .line {
+            height: 4px;
+            width: 100%;
+            background-color: rgb(255, 255, 255);
+            border-radius: 10px;
+        }
+
+        @media screen and (max-width: 550px) {
+            #header-container {
+                flex-direction: column;
+                width: 100%;
+                margin-bottom: 60px;
+            }
+
+            #navbar {
+                position: absolute;
+                top: 64px;
+                left: -100%;
+                display: flex;
+                flex-flow: column nowrap;
+                justify-content: space-between;
+                align-items: stretch;
+                width: 100%;
+                text-align: center;
+                height: calc(100vh - 64px);
+            }
+
+            #navbar.active {
+                left: 0;
+            }
+
+            #toggle-btn {
+                display: flex;
+            }
+
+            #navbar li {
+                width: 100%;
+            }
+
+            #navbar a {
+                display: block;
+                width: 100%;
+            }
+
+            #first-item {
+                flex-direction: column;
+            }
+
+            #last-item {
+                display: block;
+            }
+
+            #last-item div a {
+                display: inline;
+            }
+        }
+
+        /* styling home section of main tag */
+
+        #home {
+            background-image: url("imges/person-2.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+            /* height: 700px; */
+            font-family: "Roboto Mono", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        #welcome-section {
+            padding-left: 50px;
+            width: 70%;
+            margin: auto;
+            /* margin-bottom: 10px;             */
+            color: rgb(215, 37, 221);
+            flex: 0 1 75%;
+            height: 100vh;
+            display: flex;
+            flex-flow: column nowrap;
+            justify-content: center;
+            align-items: flex-start;
+            /* background-color: rgb(202, 106, 151); */
+        }
+
+        #welcome-section h1 {
+            margin: 0;
+            font-size: 3em;
+        }
+
+        #welcome-section h2 {
+            font-size: 2em;
+        }
+
+        #btns {
+            margin: 20px 0 20px 0;
+        }
+
+        #btns button {
+            border: 1px solid red;
+            border-radius: 10px;
+            background-color: rgb(0, 0, 0);
+            color: white;
+            padding: 1em;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        #btns button:hover {
+            border: 1px solid white;
+            color: red;
+            transition: 0.8s;
+            cursor: pointer;
+        }
+
+        /* Styling whoami section of main tag */
+
+        #whoami {
+            border-top: 1px solid rgb(15, 15, 15);
+            background-color: black;
+            color: white;
+            padding: 1em;
+        }
+
+        #whoami-container {
+            padding: 1em;
+            width: 80%;
+            margin: auto;
+            line-height: 1cm;
+            text-align: center;
+        }
+
+        #whoami-container h2 {
+            margin-top: 45px;
+            color: rgb(215, 37, 221);
+        }
+
+        #whoami-container p {
+            text-align: justify;
+        }
+
+        @media screen and (max-width: 420px) {
+            #whoami-container {
+                width: 95%;
+            }
+        }
+
+        /* Styling projects of main tag */
+
+        #projects {
+            border-top: 1px solid rgb(15, 15, 15);
+            margin-top: 50px;
+            background-color: black;
+            color: white;
+            text-align: center;
+            background-image: url("imges/background.jpg");
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        #projects h2 {
+            margin-top: 60px;
+            color: rgb(215, 37, 221);
+        }
+
+        #projects h4 {
+            color: rgb(215, 37, 221);
+        }
+
+        #projects #project-description {
+            width: 50%;
+            margin: auto;
+            padding: 10px;
+            margin-bottom: 30px;
+        }
+
+        #proj-grid-box {
+            display: grid;
+            grid-template-columns: repeat(3, 300px);
+            grid-template-rows: auto auto;
+            grid-template-areas:
+                "box-1 box-2 box-3"
+                "box-4 box-5 box-6";
+            place-content: center center;
+            text-align: center;
+            gap: 20px;
+        }
+
+        #box-1 {
+            grid-area: box-1;
+        }
+
+        #box-2 {
+            grid-area: box-2;
+        }
+
+        #box-3 {
+            grid-area: box-3;
+        }
+
+        #box-4 {
+            grid-area: box-4;
+        }
+
+        #box-5 {
+            grid-area: box-5;
+        }
+
+        #box-6 {
+            grid-area: box-6;
+        }
+
+        #proj-grid-box a {
+            text-decoration: none;
+            color: white;
+            display: flex;
+            flex-flow: column nowrap;
+        }
+
+        #proj-grid-box img {
+            max-width: 300px;
+            height: auto;
+        }
+
+        #proj-grid-box p {
+            padding: 0.8em;
+            margin: 0;
+            background-color: rgb(34, 34, 34);
+        }
+
+        .grid-item {
+            border: 1px solid red;
+            width: fit-content;
+        }
+
+        .grid-item:hover {
+            transform: scale(1.1, 1.1);
+            transition: 0.8s ease;
+        }
+
+        #see-more-btn {
+            padding: 30px;
+        }
+
+        #see-more-btn button {
+            margin: auto;
+            display: block;
+            padding: 0.9rem;
+            font-size: 1rem;
+            text-decoration: none;
+            color: white;
+            background-color: red;
+            border: 1px solid rgb(148, 0, 0);
+            border-radius: 10px;
+        }
+
+        #see-more-btn button:hover {
+            cursor: pointer;
+            color: red;
+            background-color: black;
+            transition: 0.8s ease;
+            border: 1px solid white;
+        }
+
+        @media screen and (max-width: 1090px) {
+            #proj-grid-box {
+                grid-template-columns: repeat(2, 300px);
+                grid-template-rows: auto auto;
+                grid-template-areas:
+                    "box-1 box-2"
+                    "box-3 box-4";
+                place-content: center center;
+            }
+
+            #box-5,
+            #box-6 {
+                position: absolute;
+                display: none;
+            }
+        }
+
+        @media screen and (max-width: 690px) {
+            #project-description {
+                width: 80% !important;
+            }
+
+            #proj-grid-box {
+                grid-template-columns: 300px;
+                grid-template-rows: auto auto auto;
+                grid-template-areas:
+                    "box-1"
+                    "box-2"
+                    "box-3";
+                place-content: center center;
+            }
+
+            #box-4 {
+                position: absolute;
+                display: none;
+            }
+        }
+
+        @media screen and (max-width: 340px) {
+            #proj-grid-box {
+                grid-template-columns: 200px;
+            }
+
+            #proj-grid-box img {
+                width: 200px;
+                height: auto;
+            }
+        }
+
+        /* Styling Skills Section of Main tag */
+
+        #skill-section {
+            color: rgb(0, 0, 0);
+            font-size: 20px;
+            border-top: 1px solid rgb(0, 0, 0);
+        }
+
+        #skill-section h2 {
+            color: rgb(215, 37, 221);
+            text-align: center;
+            margin-top: 100px;
+            margin-bottom: 30px;
+        }
+
+        #skill-section h3 {
+            color: rgb(215, 37, 221);
+        }
+
+        #skill-section #skill-description {
+            width: 75%;
+            margin: auto;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        #skill-box {
+            display: grid;
+            grid-template-columns: repeat(3, 300px);
+            grid-template-rows: auto auto;
+            place-content: center center;
+            gap: 20px;
+        }
+
+        .skill-item {
+            padding-left: 3rem;
+            padding-right: 3rem;
+            text-align: center;
+            border: 3px solid rgb(0, 0, 0);
+        }
+
+        .skill-item:hover {
+            transform: scale(1.1, 1.1);
+            transition: 0.8s ease;
+        }
+
+        @media screen and (max-width: 1090px) {
+            #skill-box {
+                grid-template-columns: repeat(2, 300px);
+                grid-template-rows: auto auto auto;
+                place-content: center center;
+            }
+        }
+
+        @media screen and (max-width: 690px) {
+            #skill-box {
+                grid-template-columns: 80%;
+                grid-template-rows: repeat(6, auto);
+                place-content: center center;
+            }
+        }
+
+        /* Chaning background image of projects sections for mobile version */
+
+        @media screen and (max-width: 690px) {
+            #projects {
+                background-image: url("imges/side-background.jpg");
+                background-size: cover;
+                background-attachment: fixed;
+            }
+        }
+
+        /* Styling footer */
+
+        footer {
+            border-top: 1px solid rgb(15, 15, 15);
+            color: black;
+            margin-top: 50px;
+            text-align: center;
+            background-color: rgb(215, 37, 221);
+            padding: 1em 2em 1em 2em;
+        }
+
+        footer>h3 {
+            font-size: 1em;
+            margin-top: 0;
+            margin-bottom: 5px;
+        }
+
+        footer ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-flow: row nowrap;
+            column-gap: 10px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        footer #last-div p {
+            width: fit-content;
+            margin: auto;
+            margin-top: 0;
+            margin-bottom: 0;
+            font-size: 0.75em;
+        }
+    /* this is date time style shite */
+    
+    .container{
+            background-color: yellow;
+            padding: 10px 80px;
+            color: rgb(46, 24, 168);
+            margin: 0px;
+            font-size: 25px;
+            text-align: center;
+        }
+        h1{
+            font-size: 30px;
+            text-align: center;
+            color: red;
+        }
+               
+    </style>
+</head>
+
+<body>
+    <header>
+        <!-- main heading of html of date time -->
+        <!-- <h1>This website Show time</h1> -->
+        <nav id="header-container">
+            <a href="#"><img
+                    src="imges/github - Copy.png"
+                    alt="logo" id="logo" /></a>
+            <button id="toggle-btn">
+                <span class="line"></span>
+                <span class="line"></span>
+                <span class="line"></span>
+            </button>
+            <ul id="navbar">
+                <div id="first-item">
+                    <li><a href="#home" data-link>Home</a></li>
+                    <li><a href="#whoami" data-link>WhoAmI?</a></li>
+                    <li><a href="#projects" data-link>Projects</a></li>
+                    <li><a href="#skill-section" data-link>Skills</a></li>
+                </div>
+                <div id="last-item">
+                    <div>
+                        <p>Contact Me</p>
+                        <form>
+                            <input type="email" name="email" id="email" />
+                            <input type="submit" value="send" />
+                        </form>
+                        <a href="#"><img
+                                src="imges/github - Copy.png"
+                                alt="github" /></a>
+                        <a href="#"><img
+                                src="imges/gmail_icon.png"
+                                alt="gmail" /></a>
+                        <a href="#"><img id="fb"
+                                src="imges/facebook - Copy.png"
+                                alt="facebook" /></a>
+                    </div>
+                </div>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- This is start Date and Time show purpose -->
+    <!-- This is start Date and Time show purpose -->
+    <div class="wrapper">
+        <div class="display">
+            <div id="time">12:00:00 PM</div>
+        </div>
+        <span></span>
+        <span></span>
+    </div>
+    <!-- This is end Date and Time show purpose -->
+    <!-- This is end Date and Time show purpose -->
+    <main>
+        <section id="home">
+            <div id="welcome-section">
+                <h1 class="up-bottom">Hi, Welcome!</h1>
+                <h2 class="left-right">
+                    I am <span style="color: red">Shubham Sahu</span>.
+                </h2>
+                <h2 class="left-right">A Front-End Web Developer</h2>
+                <p class="right-left" style="width: fit-content">
+                    Who loves building
+                    <span style="color: red">beautiful</span> User Interfaces.
+                </p>
+                <div id="btns">
+                    <button id="see-more" class="bottom-up">See More</button>
+                </div>
+            </div>
+        </section>
+        <section id="whoami">
+            <div id="whoami-container" class="who-container">
+                <h2>So who actually am I?</h2>
+                <p>
+                    I am a <span style="color: red">Front-End</span>
+                    Developer. And I also love JavaScript because it is everywhere.
+                    That's why, I am learning JavaScript to become a Full-Stack
+                    Developer. The technologies I am using now are
+                    <span style="color: red">HTML</span>,
+                    <span style="color: red">CSS</span>,
+                    <span style="color: red">Vanilla JavaScript</span> and
+                    <span style="color: red">a few JS Libraries</span> for things like
+                    animations. They are the heart of the Front-End Development.
+                </p>
+            </div>
+        </section>
+        <section id="projects">
+            <h2>My Favourite Websites</h2>
+            <p id="project-description">
+                Below are my favourite websites,
+                this is <span style="color: red">HTML/CSS</span> projects and
+                <span style="color: red">JavaScript</span> projects. Click to any of
+                these to see the project source code on                
+                 And i want to make these websites as a projects with HTML/CSS and javaScript.
+                You can access these website as a project source code on <span style="color: red">GitHub</span>.
+            </p>
+            <div id="proj-grid-box" class="project-tile">
+                <div id="box-1" class="grid-item">
+                    <a href="#">
+                        <img src="imges/facebookweblogin.png"
+                            alt="tribute page" />
+                        <h4>Tribute Page</h4>
+                    </a>
+                </div>
+                <div id="box-2" class="grid-item">
+                    <a href="#">
+                        <img src="imges/PaytmLoginPage.png"
+                            alt="survey form" />
+                        <h4>Survey Form Page</h4>
+                    </a>
+                </div>
+                <div id="box-3" class="grid-item">
+                    <a href="#">
+                        <img src="imges/linkedinLoginpage.png"
+                            alt="product landing page" />
+                        <h4> Linkdin Login page</h4>
+                    </a>
+                </div>
+                <div id="box-4" class="grid-item">
+                    <a href="#">
+                        <img src="imges/instaloginPage.png"
+                            alt="technical documentation" />
+                        <h4>InstaGram Login Page</h4>
+                    </a>
+                </div>
+                <div id="box-5" class="grid-item">
+                    <a href="#">
+                        <img src="imges/facebookweblogin.png"
+                            alt="fb-login page" />
+                        <h4>Facebook Login Page</h4>
+                    </a>
+                </div>
+                <div id="box-6" class="grid-item">
+                    <a href="#">
+                        <img src="imges/PaytmLoginPage.png"
+                            alt="countdown" />
+                        <h4>Paytm Login Page</h4>
+                    </a>
+                </div>
+            </div>
+            <div id="see-more-btn">
+                <button>See More</button>
+            </div>
+        </section>
+        <section id="skill-section">
+            <h2>My Skill Sets</h2>
+            <p id="skill-description">
+                Web Development is not only the one that I passionate about. I do also
+                love <span style="color: red">Game Development</span>. That's why I've
+                learnt <span style="color: red">C++</span> and other
+                <span style="color: red">Object Oriented Programming Languages</span>.
+            </p>
+            <div id="skill-box">
+                <div class="cpp skill-item">
+                    <h3>C++</h3>
+                    <p>
+                        I started my programming career with C++. I've made Desktop apps
+                        and especially Games with it. Of course, you can also see them on
+                        <span style="color: red">GitHub</span>.
+                    </p>
+                </div>
+                <div class="python skill-item">
+                    <h3>Python</h3>
+                    <p>
+                        Python is the most popular language that every developer should
+                        know. I used some frameworks of Python such as
+                        <span style="color: red">PyAutoGUI</span> and
+                        <span style="color: red">PyGame</span>. I will also learn Django.
+                    </p>
+                </div>
+                <div class="c-sharp skill-item">
+                    <h3>C#</h3>
+                    <p>
+                        With C#, making Desktop Apps is easy. I've made Games in C# with
+                        the power of <span style="color: red">Unity Game Engine</span>.
+                    </p>
+                </div>
+                <div class="java skill-item">
+                    <h3>Java</h3>
+                    <p>
+                        With Java, I only made Desktop Apps. But I will use it when I
+                        start to learn
+                        <span style="color: red">Android Development</span>.
+                    </p>
+                </div>
+                <div class="html-css skill-item">
+                    <h3>HTML and CSS</h3>
+                    <p>
+                        I finished HTML/CSS Course on
+                        <span style="color: red">w3schools</span> and
+                        <span style="color: red">freeCodeCamp</span>. So I have strong
+                        solid foundations. I am very confident at making website in
+                        HTML/CSS from scratch.
+                    </p>
+                </div>
+                <div class="javascript skill-item">
+                    <h3>JavaScript</h3>
+                    <p>
+                        JavaScript is my favourite language. I've made many many projects
+                        with it. All of the projects can be seen on
+                        <span style="color: red">GitHub</span>.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <h3>Contact or See my work</h3>
+        <ul>
+            <li>
+                <a href="#">
+                    <img src="imges/facebook.png"
+                        alt="facebook logo" style="width: 40px; height: 39px" />
+                </a>
+            </li>
+            <li>
+                <a href="#" id="profile-link" target="_blank">
+                    <img src="imges/github - Copy.png"
+                        alt="github logo" style="width: 40px; height: 39px" />
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="imges/gmail_icon.png"
+                        alt="gmail logo" style="width: 40px; height: 39px" />
+                </a>
+            </li>
+        </ul>
+        <div id="last-div">
+            <p>Copyright &copy; 2021. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+
+<script>
+    // !! IMPORTANT README:
+
+    
+
+    const btn = document.querySelector('#toggle-btn');
+    const nav = document.querySelector('#navbar');
+    const navLinks = document.querySelectorAll('#navbar [data-link]');
+
+    function onOffScroll() {
+        if (nav.classList.contains('active')) {
+            scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
+
+                // if any scroll is attempted,
+                // set this to the previous value
+                window.onscroll = function () { window.scrollTop(scrollLeft, scrollTop) };
+        } else {
+            window.onscroll = function () { }
+        }
+    }
+
+    btn.addEventListener('click', () => {
+        nav.classList.toggle('active');
+    })
+
+    navLinks.forEach(item => {
+        item.addEventListener('click', () => {
+            console.log('Clicked', item);
+            nav.classList.toggle('active');
+        });
+    });
+
+
+    // script for date and time
+    console.log("This website show time with date!!!");
+     let now = new Date();
+     console.log(now);
+     
+     let dt = new Date(1000);
+     console.log(dt);
+
+     let newdate = new Date("2023-08-23");
+     console.log(newdate);
+
+     newdate.setDate(17);
+     newdate.setMinutes(29);
+     console.log(newdate);
+
+     setInterval(updateTime, 1000);
+
+     function updateTime(){
+         time.innerHTML = new Date()
+     }
+</script>
+
+</html>
